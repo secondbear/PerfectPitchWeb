@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 
@@ -159,11 +160,11 @@ namespace PerfectPitchWeb
                     var param = line.Split(',');
                     if (Int32.Parse(param[2]) == neardist)
                     {
-                        pitchdosenear[Int32.Parse(param[1])] = float.Parse(param[0]);
+                        pitchdosenear[Int32.Parse(param[1])] = Convert.ToSingle(param[0], new CultureInfo("en-US"));
                     }
                     if (Int32.Parse(param[2]) == secdis)
                     {
-                        pitchdosesec[Int32.Parse(param[1])] = float.Parse(param[0]);
+                        pitchdosesec[Int32.Parse(param[1])] = Convert.ToSingle(param[0], new CultureInfo("en-US"));
                     }
 
                 }//foreach

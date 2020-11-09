@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 
 
 namespace PerfectPitchWeb
 {
     public partial class _Default : Page
     {
+       
         public event EventHandler<SlideEventCalc> SlideEv;
 
         private float distance;
@@ -131,10 +135,12 @@ namespace PerfectPitchWeb
 
         private void GetTextboxVals()
         {
-            distance= Int32.Parse(DistanceSlide_BoundControl.Text);
-            block = float.Parse(BlockingSlide_BoundControl1.Text);
-            fdose = float.Parse(DoseSlide_BoundControl0.Text);
-            modfactor = float.Parse(MFSlide_BoundControl2.Text);
+            distance = Convert.ToSingle(DistanceSlide_BoundControl.Text, new CultureInfo("en-US"));
+            block = Convert.ToSingle(BlockingSlide_BoundControl1.Text, new CultureInfo("en-US"));
+
+            //fdose = float.Parse(DoseSlide_BoundControl0.Text.ToString(CultureInfo.CreateSpecificCulture("sv-SE")));
+            fdose = Convert.ToSingle(DoseSlide_BoundControl0.Text, new CultureInfo("en-US"));
+            modfactor = Convert.ToSingle(MFSlide_BoundControl2.Text, new CultureInfo("en-US"));
             fw = RButtonFW.SelectedValue;
 
 
